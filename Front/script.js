@@ -8,10 +8,13 @@ function validar(){
 }
 
 function ConsumAPI(){
+    let id = []
     let nombre = [];
     let capital = [];
     let idioma = [];
     let poblacion = [];
+    var cantidad = 0; 
+    let datos = '';
 
     let url = "http://127.0.0.1:8000/api/paises";
     fetch(url)
@@ -19,24 +22,38 @@ function ConsumAPI(){
     .then(function (data_obtanined){
         data_obtanined.forEach(function agregar(data_obtanined) {
 
+            id.push(data_obtanined.id)
             nombre.push(data_obtanined.nombre);
             capital.push(data_obtanined.capital);
             idioma.push(data_obtanined.idioma);
             poblacion.push(data_obtanined.poblacion);
-        
+            cantidad = cantidad + 1;
+            
         });
         var trace = {
-            x: nombre,
-            y: poblacion,
-            type: 'histogram',
+            type: "pie",
+            values: poblacion,
+            labels: nombre,
           };
         var data = [trace];
         Plotly.newPlot('grafo', data);
+        for(var i = 0; i < cantidad; i++){
+            datos = datos + 
+            `            
+                <tr>
+                    <td>`+id[i]+`</td>
+                    <td>`+nombre[i]+`</td>
+                    <td>`+capital[i]+`</td>
+                    <td>`+idioma[i]+`</td>
+                    <td>`+poblacion[i]+`</td>
+                </tr>
+            `
+        }
+        document.getElementById("tablaAPI").innerHTML = datos;
     });
     
-}
 
-/*
+/*   
 const tbody = document.querySelector('#tbl-paises tbody');
 let mostrar_datos = async() => {
     let paises = await listar_paises();
@@ -50,5 +67,6 @@ let mostrar_datos = async() => {
         fila.insertCell().innerHTML = paises[i]['poblacion'];
     }
 };
-mostrar_datos();
 */
+
+}
