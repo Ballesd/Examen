@@ -33,8 +33,10 @@ function ConsumAPI(){
         var data = [trace];
         Plotly.newPlot('grafo', data);
     });
+    
 }
 
+/*
 const tbody = document.querySelector('#tbl-paises tbody');
 let mostrar_datos = async() => {
     let paises = await listar_paises();
@@ -49,3 +51,4 @@ let mostrar_datos = async() => {
     }
 };
 mostrar_datos();
+*/
