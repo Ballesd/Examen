@@ -9,6 +9,8 @@ function validar(){
 
 function ConsumAPI(){
     let nombre = [];
+    let capital = [];
+    let idioma = [];
     let poblacion = [];
 
     let url = "http://127.0.0.1:8000/api/paises";
@@ -18,6 +20,8 @@ function ConsumAPI(){
         data_obtanined.forEach(function agregar(data_obtanined) {
 
             nombre.push(data_obtanined.nombre);
+            capital.push(data_obtanined.capital);
+            idioma.push(data_obtanined.idioma);
             poblacion.push(data_obtanined.poblacion);
         
         });
@@ -38,6 +42,7 @@ let mostrar_datos = async() => {
     for (let i = 0; i < paises.length; i++) {
         let fila = tbody.insertRow();
         fila.insertCell().innerHTML = paises[i]['id'];
+        fila.insertCell().innerHTML = paises[i]['nombre'];
         fila.insertCell().innerHTML = paises[i]['capital'];
         fila.insertCell().innerHTML = paises[i]['idioma'];
         fila.insertCell().innerHTML = paises[i]['poblacion'];
