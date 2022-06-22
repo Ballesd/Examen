@@ -13,7 +13,14 @@ class Paises extends Migration
      */
     public function up()
     {
-        
+        Schema::create('paises', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('capital');
+            $table->string('idioma');
+            $table->integer('poblacion');
+            $table->timestamps();
+        });
     }
 
     /**
